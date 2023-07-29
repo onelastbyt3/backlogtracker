@@ -49,6 +49,8 @@ python main.py
 
 As a backend developer, my main focus for this project was on creating a robust backend to handle all functionalities. Leveraging Flask and PostgreSQL, I built a simple CRUD API with various endpoints that enable users to efficiently manage their gaming backlogs. Users can add new games, mark them as completed, update game information, and remove games from their backlogs through these endpoints. This led me to craft a focused ER diagram with three main entities: Users, Backlogs, and Games. Each entity would have non-nullable properties associated with them, with relationships mainly being one-to-many, as users can have many backlogs, but a backlog belongs to only one user, and a backlog can have many games, while a game is specific to at least one backlog. 
 
+<img src="https://github.com/onelastbyt3/backlogtracker/blob/main/ER-diagram.png" width="700" height="450">
+
 For the persistent database, I chose to go with PostgreSQL for its numerous advantages. PostgreSQL is renowned for its reliability, stability, and scalability. It efficiently handles large volumes of data and supports seamless growth as the app attracts more users which is appealing for scalability. Furthermore, PostgreSQL's ACID compliance ensures data integrity and consistency, making it the ideal choice for maintaining the security and reliability of the app's data.  
 
 A challenging aspect of development was providing users with easily accessible insights into their gaming backlogs, in particular on the user dashboard. To accomplish this, I wrote SQL statements to calculate and retrieve essential data from the database, including cleared backlogs, total number of games, and total cost spent on games. 
@@ -71,7 +73,7 @@ An issue I ran into during this process however was when I trying to display the
 return render_template('dashboard.html', cleared_backlogs=cleared_backlogs, total_games=total_games, howlongtobeat_total=howlongtobeat_total,total_cash_spent=total_cash_spent)
 ```
 
-Overall, this was a very fun project to build and learn from. I hope this app can help you or others tackle the dreaded old gaming backlog with much success. As the app is designed to scale, meaning more functionality such as user interaction, or consuming game information from another API such as HowLongToBeat's, can be implemented to further enhance the user experience. I do plan on adding testing, containerizing the app, and later deploy this for general use using a Cloud service. 
+Overall, this was a very fun project to build and learn from. I hope this app can help you or others tackle the dreaded old gaming backlog with much success. As the app is designed to scale, meaning more functionality such as user interaction, or consuming game information from another API such as HowLongToBeat's, can be implemented to further enhance the user experience some time in the future, if I want to develop this further. However, as this was a passion project and a dive into Flask development overall, I am content with leaving the project as is for now. 
 
 ## License
 This project is open-source and available under the MIT license.
