@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Backlogs</title>
+</head>
+<body>
+  <a href="{{ url_for('routes.dashboard') }}">Dashboard</a>
+  <a href="{{ url_for('routes.logout') }}">Logout</a>
+  <br></br>
+  <div style="display: flex; justify-content: center;">
+    <img src="{{ url_for('static', filename='backlogs.png') }}" alt="Backlog Image" width="1100" height="150px">
+  </div>
+  <br> </br>
+  <form method="GET" action="{{ url_for('routes.add_backlog') }}">
+    <input type="submit" value="+ Create new backlog">
+  </form>
+
+  <h2>Backlogs In Progress:</h2>
+  {% if backlogs %}
+    <ul>
+      {% for backlog in backlogs %}
+        <li><a href="{{ url_for('routes.view_backlog', backlog_id=backlog.id) }}">{{ backlog.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No backlogs in progress</p>
+  {% endif %}
+
+  <h2>Cleared Backlogs:</h2>
+  {% if cleared_backlogs %}
+    <ul>
+      {% for backlog in cleared_backlogs %}
+        <li><a href="{{ url_for('routes.view_backlog', backlog_id=backlog.id) }}">{{ backlog.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No cleared backlogs yet</p>
+  {% endif %}
+</body>
+</html>

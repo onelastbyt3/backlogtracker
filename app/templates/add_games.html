@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Games</title>
+</head>
+<body>
+  <h1>Current Backlog: {{ backlog.name }}</h1>
+  <button onclick="location.href='{{ url_for('routes.backlogs_main') }}'">Backlogs Main</button>
+  <br></br>
+  <form id="game-form" method="POST" action="{{ url_for('routes.add_games', backlog_id=backlog_id) }}">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+    <br><br>
+    <label for="platform">Platform:</label>
+    <input type="text" id="platform" name="platform" required>
+    <br><br>
+    <label for="howlongtobeat">How Long to Beat (Hours):</label>
+    <input type="text" id="howlongtobeat" name="howlongtobeat">
+    <br><br>
+    <label for="purchase_price">Purchase Price (USD):</label>
+    <input type="text" id="purchase_price" name="purchase_price">
+    <br><br>
+    <label for="is_beat">Is Beat?:</label>
+    <select id="is_beat" name="is_beat">
+      <option value="no">No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Add Game">
+  </form>
+
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>

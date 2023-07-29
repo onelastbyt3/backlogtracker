@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ title }}</title>
+</head>
+<body>
+  <h1 style="text-align: center; font-size: 30px;">{{ title }}</h1>
+  
+  <p style="font-size: 20px;">Welcome to <b>BacklogTracker</b>! This is a simple web app to help you manage your ever-growing gaming backlog. Add your new or old games to a custom backlog and track your progress!</p>
+
+  <div style="display: flex; justify-content: center;">
+    <img src="{{ url_for('static', filename='home_pic.png') }}" alt="Backlog Image" width="400" height="550px">
+  </div>
+
+  <br><div style="text-align: center;">
+    <a href="/login"><button>Login</button></a>
+    <a href="/register"><button>Register</button></a>
+    <a href="/dashboard"><button>Dashboard</button></a>
+    <a href="/credit_faq"><button>Credit/FAQ</button></a>
+  <br></div>
+</body>
+</html>

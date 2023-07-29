@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Game</title>
+</head>
+<body>
+
+  <h1>Edit Game</h1>
+  <form method="POST" action="{{ url_for('routes.edit_games', backlog_id=backlog_id, game_id=game_id) }}">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="backlog_id" value="{{ backlog_id }}">
+    <input type="hidden" name="game_id" value="{{ game_id }}">
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{ game.title }}" required>
+    <br><br>
+    <label for="platform">Platform:</label>
+    <input type="text" id="platform" name="platform" value="{{ game.platform }}" required>
+    <br><br>
+    <label for="howlongtobeat">How Long to Beat:</label>
+    <input type="text" id="howlongtobeat" name="howlongtobeat" value="{{ game.howlongtobeat }}">
+    <br><br>
+    <label for="purchase_price">Purchase Price:</label>
+    <input type="text" id="purchase_price" name="purchase_price" value="{{ game.purchase_price }}">
+    <br><br>
+    <label for="is_beat">Is Beat?:</label>
+    <select id="is_beat" name="is_beat">
+      <option value="no" {% if not game.is_beat %}selected{% endif %}>No</option>
+      <option value="yes" {% if game.is_beat %}selected{% endif %}>Yes</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Update Game">
+  </form>
+
+  <form method="POST" action="{{ url_for('routes.edit_games', backlog_id=backlog_id, game_id=game_id) }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="backlog_id" value="{{ backlog_id }}">
+    <input type="hidden" name="game_id" value="{{ game_id }}">
+    <input type="submit" value="Delete Game">
+  </form>
+
+</body>
+</html>

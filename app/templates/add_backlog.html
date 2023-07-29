@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Backlog</title>
+</head>
+<body>
+  <h1>Add Backlog</h1>
+  <button onclick="location.href='{{ url_for('routes.backlogs_main') }}'">Backlogs Main</button>
+  <br></br>
+  <form method="POST" action="{{ url_for('routes.add_backlog') }}">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+    <label for="date_created">Date Created:</label>
+    <input type="date" id="date_created" name="date_created" required>
+    <br><br>
+    <label for="is_cleared">Is Cleared:</label>
+    <select id="is_cleared" name="is_cleared">
+      <option value="no" selected>No</option>
+      <option value="yes">Yes</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Create Backlog">
+  </form>
+</body>
+</html>

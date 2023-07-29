@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Backlog</title>
+</head>
+<body>
+
+  <h1>Update: {{ backlog.name }}</h1>
+  <a href="{{ url_for('routes.dashboard') }}">Dashboard</a> <button onclick="location.href='{{ url_for('routes.backlogs_main') }}'">Backlogs Main</button>
+  <br><br>
+  <form method="POST" action="{{ url_for('routes.view_backlog', backlog_id=backlog.id) }}">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ backlog.name }}" required>
+    <br><br>
+    <label for="is_cleared">Is Cleared:</label>
+    <select id="is_cleared" name="is_cleared">
+      <option value="no" {% if not backlog.is_cleared %}selected{% endif %}>No</option>
+      <option value="yes" {% if backlog.is_cleared %}selected{% endif %}>Yes</option>
+    </select>
+    <br><br>
+    <input type="submit" value="Update Backlog">
+  </form>
+
+  <form method="POST" action="{{ url_for('routes.view_backlog', backlog_id=backlog.id) }}">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Backlog">
+  </form>
+
+  <h2>Games in Progress:</h2>
+  <button onclick="location.href='{{ url_for('routes.add_games', backlog_id=backlog.id) }}'">+ Add Games</button>
+  <br><br>
+  {% if games_in_progress %}
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Platform</th>
+      <th>How Long to Beat</th>
+      <th>Purchase Price</th>
+    </tr>
+    {% for game in games_in_progress %}
+    <tr>
+      <td><a href="{{ url_for('routes.edit_games', backlog_id=backlog.id, game_id=game.id) }}">{{ game.title }}</a></td>
+      <td>{{ game.platform }}</td>
+      <td>{{ game.howlongtobeat }}</td>
+      <td>{{ game.purchase_price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No games in progress.</p>
+  {% endif %}
+
+  <h2>Completed Games:</h2>
+  {% if completed_games %}
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Platform</th>
+      <th>How Long to Beat</th>
+      <th>Purchase Price</th>
+    </tr>
+    {% for game in completed_games %}
+    <tr>
+      <td><a href="{{ url_for('routes.edit_games', backlog_id=backlog.id, game_id=game.id) }}">{{ game.title }}</a></td>
+      <td>{{ game.platform }}</td>
+      <td>{{ game.howlongtobeat }}</td>
+      <td>{{ game.purchase_price }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No completed games.</p>
+  {% endif %}
+
+</body>
+</html>

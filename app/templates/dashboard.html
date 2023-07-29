@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body>
+  <h1>Welcome {{ current_user.username }} !</h1>
+
+  <a href="{{ url_for('routes.logout') }}">Logout</a>
+
+  <button onclick="location.href='{{ url_for('routes.backlogs_main') }}'">View and Manage Backlogs</button>
+
+  <p><b>Cleared Backlogs:</b> {{ cleared_backlogs }}</p>
+  <p><b>Total Games (Across All Backlogs):</b> {{ total_games }}</p>
+  <p><b>HowLongToBeat Total (In Hours):</b> {{ howlongtobeat_total }}</p>
+  <p><b>Total Cash Spent (In USD):</b> {{ '%0.2f' | format(total_cash_spent) }}</p>
+
+  <div style="display: flex; justify-content: center;">
+    <img src="{{ url_for('static', filename='dashboard.jpg') }}" alt="Dashboard Image" width="800" height="400px">
+  </div>
+  
+</body>
+</html>
