@@ -47,13 +47,13 @@ python main.py
 
 ## Development Notes
 
-As a backend developer, my main focus for this project was on creating a robust backend to handle all functionalities. Leveraging Flask and PostgreSQL, I built a simple CRUD API with various endpoints that enable users to efficiently manage their gaming backlogs. Users can add new games, mark them as completed, update game information, and remove games from their backlogs through these endpoints. This led me to craft a focused ER diagram with three main entities: Users, Backlogs, and Games. Each entity would have non-nullable properties associated with them, with relationships mainly being one-to-many, as users can have many backlogs, but a backlog belongs to only one user, and a backlog can have many games, while a game is specific to at least one backlog. 
+As a backend developer, my main focus for this project was on creating a robust backend to handle all functionalities. Using Flask I built a simple CRUD API with various endpoints that enable users to efficiently manage their gaming backlogs with the ability to add new games, mark them as completed, update game information, remove games, and so forth. This led me to design a focused, compact, yet scalable database as seen in the ER diagram below, with three main entities: Users, Backlogs, and Games. Each entity would have non-nullable properties associated with them, with relationships mainly being one-to-many, as users can have many backlogs, but a backlog belongs to only one user, and a backlog can have many games, while a game is specific to at least one backlog. 
 
 <img src="https://github.com/onelastbyt3/backlogtracker/blob/main/ER-diagram.png" width="700" height="450">
 
 For the persistent database, I chose to go with PostgreSQL for its numerous advantages. PostgreSQL is renowned for its reliability, stability, and scalability. It efficiently handles large volumes of data and supports seamless growth as the app attracts more users which is appealing for scalability. Furthermore, PostgreSQL's ACID compliance ensures data integrity and consistency, making it the ideal choice for maintaining the security and reliability of the app's data.  
 
-A challenging aspect of development was providing users with easily accessible insights into their gaming backlogs, in particular on the user dashboard. To accomplish this, I wrote SQL statements to calculate and retrieve essential data from the database, including cleared backlogs, total number of games, and total cost spent on games. 
+A challenging aspect of development was providing users with easily accessible insights into their gaming backlogs, in particular on the user dashboard, and getting it to display correctly on the dashboard. To accomplish this, I wrote SQL statements on the backend to calculate and retrieve essential data from the database, including cleared backlogs, total number of games, and total cost spent on games. 
 ```
 total_cash_spent_query = db.session.execute(
         "SELECT COALESCE(SUM(purchase_price), 0) AS total_purchase_price "
